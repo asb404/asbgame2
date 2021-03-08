@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+ 
+<html>
+ <head>
+ <title>Boy cartoon</title>
+ <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+ <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+ </head>
+ <body class="bg-dark">
+    <nav class="navbar navbar-light bg-warning rounded">
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1 ">ASB BIRD GAME</span>
+          <span ><a class="btn btn-primary" href="https://www.google.com/webhp" role="button">Exit</a></span>
+        </div>
+       
+      </nav>
+      <br>
+      <div style="background: url('https://image.freepik.com/free-vector/music-festival-women-dancers_24911-57316.jpg') no-repeat center center/cover;">
+ <canvas id='canvas'  "></canvas><br />
+</div>
+ <div class="text-center">
+     <br>
+     <a href="Boy.html" class="btn btn-success ">Go For a Merathon</a>
+</div>
+
+ <script>
+ var canvasWidth = 1000; 
+ var canvasHeight = 350;
+ 
+ var song = new Audio();
+ song.src = "sound/feel.mpeg";
+
+ var spriteWidth = 914; 
+ var spriteHeight = 143; 
+ 
+ var rows = 1; 
+ var cols = 6; 
+ 
+ var trackRight = 0; 
+ var trackLeft = 1; 
+ 
+ var width = spriteWidth/cols; 
+ var height = spriteHeight/rows; 
+ 
+ var curFrame = 0; 
+ var frameCount = 6; 
+ 
+ var x=0;
+ var y=200; 
+ 
+ var srcX; 
+ var srcY; 
+ 
+ var left = false; 
+ var right = true;
+ 
+ var speed = 12; 
+ 
+ var canvas = document.getElementById('canvas');
+ canvas.width = canvasWidth;
+ canvas.height = canvasHeight; 
+ 
+ var ctx = canvas.getContext("2d");
+ 
+ var character = new Image(); 
+ character.src = "rock.png";
+ 
+ function updateFrame(){
+
+    
+ curFrame = ++curFrame % frameCount; 
+ srcX = curFrame * width; 
+ ctx.clearRect(x,y,width,height); 
+ 
+ if(left && x>0){
+    song.play();
+
+ srcY = trackLeft * height; 
+ x-=speed; 
+ }
+ if(right && x<canvasWidth-width){
+    song.play();
+
+ srcY = trackRight * height; 
+ x+=speed; 
+ }
+ }
+ 
+ function draw(){
+    updateFrame();
+    song.play();
+
+ ctx.drawImage(character,srcX,srcY,width,height,x,y,width,height);
+ }
+ 
+ 
+ function moveLeft(){
+    song.play();
+ left = true; 
+ right = false; 
+ }
+ 
+ function moveRight(){
+ left = false;
+ right = true; 
+ song.play();
+
+ }
+ 
+ setInterval(draw,100);
+ 
+ </script>
+  <footer class="bg-warning text-center text-sm-start fixed-bottom">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2021 Copyright:
+      <a class="text-dark" >asbhavsar</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+ </body>
+</html>
